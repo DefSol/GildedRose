@@ -1,3 +1,4 @@
+using GildedRose.Console;
 using Xunit;
 
 namespace GildedRose.Tests
@@ -9,5 +10,6 @@ namespace GildedRose.Tests
         {
             Assert.True(true);
         }
-    }
+
+    }   
 }
