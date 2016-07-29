@@ -71,6 +71,17 @@ namespace GildedRose.Tests
             Assert.True(item.Quality == item2.Quality);
         }
 
+
+
+        [Fact]
+        public void TestItemsSulfuras()
+        {
+            var item = new Item { Name = Item.Sulfuras, SellIn = 0, Quality = 80 };
+            var item2 = (Item)item.Clone();
+            ItemProcessFactory.UpdateItem(item2);
+            Assert.True(item.Quality == item2.Quality && item.SellIn == item2.SellIn);
+        }
+
         [Fact]
         public void TestItemsUpdate()
         {
