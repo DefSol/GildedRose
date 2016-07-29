@@ -10,11 +10,11 @@ namespace GildedRose.Console
     {
         public static void UpdateItem(Item item)
         {
-            if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+            if (item.Name != Item.AgedBrie && item.Name != Item.TAFKAL80ETC)
             {
                 if (item.Quality > 0)
                 {
-                    if (item.Name != "Sulfuras, Hand of Ragnaros")
+                    if (item.Name != Item.Sulfuras)
                     {
                         item.Quality = item.Quality - 1;
                     }
@@ -26,7 +26,7 @@ namespace GildedRose.Console
                 {
                     item.Quality = item.Quality + 1;
 
-                    if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                    if (item.Name == Item.TAFKAL80ETC)
                     {
                         if (item.SellIn < 11)
                         {
@@ -47,20 +47,20 @@ namespace GildedRose.Console
                 }
             }
 
-            if (item.Name != "Sulfuras, Hand of Ragnaros")
+            if (item.Name != Item.Sulfuras)
             {
                 item.SellIn = item.SellIn - 1;
             }
 
             if (item.SellIn < 0)
             {
-                if (item.Name != "Aged Brie")
+                if (item.Name !=Item.AgedBrie)
                 {
-                    if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                    if (item.Name != Item.TAFKAL80ETC)
                     {
                         if (item.Quality > 0)
                         {
-                            if (item.Name != "Sulfuras, Hand of Ragnaros")
+                            if (item.Name != Item.Sulfuras)
                             {
                                 item.Quality = item.Quality - 1;
                             }
