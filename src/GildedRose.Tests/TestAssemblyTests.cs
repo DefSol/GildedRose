@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-
+using GildedRose.Console;
 using Xunit;
 
 namespace GildedRose.Tests
@@ -38,7 +38,7 @@ namespace GildedRose.Tests
         public void TestItemsUpdate()
         {
             var app = new Console.Program();
-            var listv1 = app.CreateItemList();
+            var listv1 = ItemFactory.CreateItemList();
             app.UpdateQuality();
             var listv2 = app.Items;
 
