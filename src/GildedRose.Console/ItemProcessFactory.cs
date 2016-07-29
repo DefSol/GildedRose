@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace GildedRose.Console
 {
@@ -16,7 +17,7 @@ namespace GildedRose.Console
                 {
                     if (item.Name != Item.Sulfuras)
                     {
-                        item.Quality = item.Quality - 1;
+                        ChangeQuality(item,- 1);
                     }
                 }
             }
@@ -24,7 +25,7 @@ namespace GildedRose.Console
             {
                 if (item.Quality < 50)
                 {
-                    item.Quality = item.Quality + 1;
+                    ChangeQuality(item,1);
 
                     if (item.Name == Item.TAFKAL80ETC)
                     {
@@ -32,7 +33,7 @@ namespace GildedRose.Console
                         {
                             if (item.Quality < 50)
                             {
-                                item.Quality = item.Quality + 1;
+                                ChangeQuality(item,1);
                             }
                         }
 
@@ -40,7 +41,7 @@ namespace GildedRose.Console
                         {
                             if (item.Quality < 50)
                             {
-                                item.Quality = item.Quality + 1;
+                                ChangeQuality(item,1);
                             }
                         }
                     }
@@ -54,7 +55,7 @@ namespace GildedRose.Console
 
             if (item.SellIn < 0)
             {
-                if (item.Name !=Item.AgedBrie)
+                if (item.Name != Item.AgedBrie)
                 {
                     if (item.Name != Item.TAFKAL80ETC)
                     {
@@ -62,24 +63,42 @@ namespace GildedRose.Console
                         {
                             if (item.Name != Item.Sulfuras)
                             {
-                                item.Quality = item.Quality - 1;
+                                ChangeQuality(item, -1);
                             }
                         }
                     }
                     else
                     {
-                        item.Quality = item.Quality - item.Quality;
+                        ChangeQuality(item, -item.Quality);
                     }
                 }
                 else
                 {
                     if (item.Quality < 50)
                     {
-                        item.Quality = item.Quality + 1;
+                        ChangeQuality(item,1);
                     }
                 }
             }
+            else
+            {
+                ChangeQuality(item, 2);
+            }
         }
 
+        private static void ChangeQuality(Item item , int amount)
+        {
+            int minQuality = 0;
+            int maxQuality = 50; 
+
+            if (amount < 0)
+            {
+                item.Quality = Math.Max(minQuality, item.Quality + amount);
+            }
+            else
+            {
+                item.Quality = Math.Min(maxQuality, item.Quality  + amount) ;
+            }
+        }
     }
 }

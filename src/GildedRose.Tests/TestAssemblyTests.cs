@@ -17,7 +17,7 @@ namespace GildedRose.Tests
         }
 
         [Fact]
-        public void TestItemsSellin()
+        public void TestItemsSellinCheck()
         {
             var app = new Console.Program();
 
@@ -33,6 +33,43 @@ namespace GildedRose.Tests
             Assert.True(app.Items.Count(i => i.Quality < 0) == 0);
         }
 
+        [Fact]
+        public void TestItemsSellin()
+        {
+            var item = new Item {Name = Item.DexterityVest, SellIn = 0, Quality = 20};
+            var item2 = (Item) item.Clone();
+
+            ItemProcessFactory.UpdateItem(item2);
+            Assert.True(item.Quality == item2.Quality + 2);
+        }
+
+
+        [Fact]
+        public void TestItemsNegativeQuality()
+        {
+            var item = new Item {Name = Item.DexterityVest, SellIn = 0, Quality = 1};
+            var item2 = (Item) item.Clone();
+            ItemProcessFactory.UpdateItem(item2);
+            Assert.True(item.Quality != item2.Quality && item2.Quality == 0);
+        }
+
+        [Fact]
+        public void TestItemsBrieSellinZero()
+        {
+            var item = new Item {Name = Item.AgedBrie, SellIn = 0, Quality = 1};
+            var item2 = (Item) item.Clone();
+            ItemProcessFactory.UpdateItem(item2);
+            Assert.True(item.Quality < item2.Quality);
+        }
+
+        [Fact]
+        public void TestItemsMaxQuality()
+        {
+            var item = new Item { Name = Item.AgedBrie, SellIn = 0, Quality = 50 };
+            var item2 = (Item)item.Clone();
+            ItemProcessFactory.UpdateItem(item2);
+            Assert.True(item.Quality == item2.Quality);
+        }
 
         [Fact]
         public void TestItemsUpdate()
@@ -44,8 +81,10 @@ namespace GildedRose.Tests
 
             for (int i = 0; i < listv2.Count; i++)
             {
-                Assert.True(listv1[i].SellIn != listv2[i].SellIn && listv1[i].Name == listv2[i].Name,
-                    $"{listv1[i].Name} {listv1[i].SellIn} {listv2[i].SellIn}");
+                Assert.True(listv1[i].SellIn != listv2[i].SellIn 
+                    && listv1[i].Name == listv2[i].Name
+                    && listv1[i].Quality != listv2[i].Quality,
+                    $"{listv1[i].Name} {listv1[i].SellIn} {listv2[i].SellIn} {listv1[i].Quality} {listv2[i].Quality}");
             }
 
         }

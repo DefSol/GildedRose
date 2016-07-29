@@ -1,6 +1,8 @@
-﻿namespace GildedRose.Console
+﻿using System;
+
+namespace GildedRose.Console
 {
-    public class Item
+    public class Item : ICloneable
     {
         public const string AgedBrie = "Aged Brie";
         public const string TAFKAL80ETC = "Backstage passes to a TAFKAL80ETC concert";
@@ -20,5 +22,9 @@
 
         public bool Conjured => Name.ToLower().Contains(CONJURED);
 
+        public object Clone()
+        {
+           return new Item() {Name = this.Name, Quality = this.Quality , SellIn = this.SellIn};
+        }
     }
 }
