@@ -2,7 +2,7 @@
 
 namespace GildedRose.Console
 {
-    public class Program
+    class Program
     {
         public IList<Item> Items;
         static void Main(string[] args)
