@@ -155,5 +155,27 @@ namespace GildedRose.Tests
             program.UpdateQuality();
             Assert.Equal(0, program.Items[0].Quality);
         }
+
+        [Fact]
+        public void TestConjuredItemsWithPositiveSellInDecreaseTwiceAsFast()
+        {           
+            var program = new Program
+            {
+                Items = new List<Item> { new Item { Name = "Conjured Mana Cake", SellIn = 6, Quality = 3 } }
+            };
+            program.UpdateQuality();
+            Assert.Equal(1, program.Items[0].Quality);
+        }
+
+        [Fact]
+        public void TestConjuredItemsWithNegativeSellInDecreaseTwiceAsFast()
+        {
+            var program = new Program
+            {
+                Items = new List<Item> { new Item { Name = "Conjured Mana Cake", SellIn = -1, Quality = 3 } }
+            };
+            program.UpdateQuality();
+            Assert.Equal(-1, program.Items[0].Quality);
+        }
     }
 }

@@ -44,7 +44,15 @@ namespace GildedRose.Console
                     {
                         if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                         {
-                            Items[i].Quality = Items[i].Quality - 1;
+                            if (Items[i].Name == "Conjured Mana Cake")
+                            {
+                                Items[i].Quality = Items[i].Quality - 2;
+                            }
+                            else
+                            {
+                                Items[i].Quality = Items[i].Quality - 1;
+                            }
+                            
                         }
                     }
                 }
@@ -90,7 +98,14 @@ namespace GildedRose.Console
                             {
                                 if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                                 {
-                                    Items[i].Quality = Items[i].Quality - 1;
+                                    if (Items[i].Name == "Conjured Mana Cake")
+                                    {
+                                        Items[i].Quality = Items[i].Quality - 2;
+                                    }
+                                    else
+                                    {
+                                        Items[i].Quality = Items[i].Quality - 1;
+                                    }
                                 }
                             }
                         }
