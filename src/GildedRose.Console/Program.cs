@@ -4,6 +4,9 @@ namespace GildedRose.Console
 {
     class Program
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public IList<Item> Items;
 
         static void Main(string[] args)
