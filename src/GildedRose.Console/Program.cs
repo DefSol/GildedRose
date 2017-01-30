@@ -39,8 +39,7 @@ namespace GildedRose.Console
         }
 
         public void UpdateQuality()
-        {
-            //for (var i = 0; i < Items.Count; i++)
+        {            
             foreach(Item item in Items)
             {
                 if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
