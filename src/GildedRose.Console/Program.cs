@@ -52,20 +52,7 @@ namespace GildedRose.Console
         {
             if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
             {
-                if (item.Quality > 0)
-                {
-                    if (item.Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        if (item.Name == "Conjured Mana Cake")
-                        {
-                            item.Quality = item.Quality - 2;
-                        }
-                        else
-                        {
-                            item.Quality = item.Quality - 1;
-                        }
-                    }
-                }
+                DefaultQualityDecrement(item);
             }
             else
             {
@@ -90,36 +77,37 @@ namespace GildedRose.Console
                 item.SellIn = item.SellIn - 1;
             }
 
-            if (item.SellIn < 0)
+            if (item.SellIn >= 0) return;
+            if (item.Name != "Aged Brie")
             {
-                if (item.Name != "Aged Brie")
+                if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
-                    {
-                        if (item.Quality > 0)
-                        {
-                            if (item.Name != "Sulfuras, Hand of Ragnaros")
-                            {
-                                if (item.Name == "Conjured Mana Cake")
-                                {
-                                    item.Quality = item.Quality - 2;
-                                }
-                                else
-                                {
-                                    item.Quality = item.Quality - 1;
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        item.Quality = item.Quality - item.Quality;
-                    }
+                    DefaultQualityDecrement(item);
                 }
                 else
                 {
-                    IncrementItemQualityByOne(item);
+                    item.Quality = 0;
                 }
+            }
+            else
+            {
+                IncrementItemQualityByOne(item);
+            }
+        }
+
+        private static void DefaultQualityDecrement(Item item)
+        {
+            if (item.Quality <= 0) return;
+            switch (item.Name)
+            {
+                case "Sulfuras, Hand of Ragnaros":
+                    return;
+                case "Conjured Mana Cake":
+                    item.Quality = item.Quality - 2;
+                    break;
+                default:
+                    item.Quality = item.Quality - 1;
+                    break;
             }
         }
 
